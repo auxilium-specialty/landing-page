@@ -148,6 +148,11 @@ async function loadChromium() {
  */
 async function renderRoute(browser, origin, path) {
   const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+  // Lets components leave out anything chosen per visit (the About hero art),
+  // so the static HTML never commits to a choice the live page would change.
+  await page.addInitScript(() => {
+    window.__PRERENDER__ = true;
+  });
   try {
     await page.goto(origin + path, { waitUntil: "networkidle", timeout: 45_000 });
     await page.evaluate(async () => {

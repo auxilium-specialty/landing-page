@@ -363,6 +363,88 @@ beam runs straight across the top edge, joining them."
 
 ---
 
+## 13. About page, rotating hero set
+
+The About hero crossfades between six pieces of art behind the manifesto,
+roughly seven seconds each. The first is the current
+`public/about/manifesto.jpg` (the logistics yard). The other five extend it to
+the three themes Auxilium writes: robotics, BESS and energy infrastructure, and
+AI liability.
+
+They share one canvas so one layout fits them all, and that matters more than
+anything else in the prompt:
+
+- **4:3**, saved at **1448x1086** (resize after generating).
+- **Horizon 58% of the way down.** The page positions the art so the text clears
+  the skyline; a horizon higher than that puts buildings behind the words.
+- **Tall structures on the left and right edges**, cut off by the top of the
+  frame, and an empty cream sky between them.
+- Same four colors and one orange sun low on the horizon, so the crossfade
+  reads as one world, not six posters.
+
+The best way to keep them consistent is to attach the current
+`manifesto.jpg` as a style reference when you generate, along with the prompt.
+
+**After generating:** resize to 1448x1086, save as `.jpg` with the name below,
+then add the path to `SLIDES` at the top of
+`src/components/about/ManifestoHero.tsx`. The order in that list is the order
+they play.
+
+### hero-humanoids.jpg
+
+**What it is:** Robotics, the humanoid line.
+**The idea:** Humanoids at work on an open-air factory floor: the next generation of the robots already in the yard.
+
+Save as: `public/about/hero-humanoids.jpg`
+
+> A 4:3 editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print, seen from ground level. An open-air advanced manufacturing yard at the edge of a city. On the far left edge, a tall steel gantry frame rises out of the top of the image, with two articulated robotic welding arms mounted on it and a half-built vehicle chassis beneath them. On the far right edge, an equally tall open-sided assembly hall rises out of the top of the image, with shelves of parts and a humanoid robot at a workbench. Across the paved floor in the bottom third: a short line of three humanoid robots assembling components at a low conveyor, one humanoid carrying a crate toward the hall, and a small wheeled robot with an orange beacon carrying parts. Distant low factory buildings and a city skyline sit on the horizon, with a half-set burnt terracotta sun behind the right-hand hall. Composed exactly like a stage set around an empty sky: the horizon line sits 58 percent of the way down the image. Everything above the horizon between the two edge structures is plain flat cream sky, completely empty: no clouds, no birds, no cables, no drones, no glow. That empty sky occupies the middle two thirds of the image width and the whole upper half, because text will be set there. Strictly four colors only: warm cream paper (#FFFEF2) for the sky and the largest surfaces, muted sage green (#7D9C90) for the ground, distant buildings and mid-tones, deep forest green (#1C4439) for the structures, machines, robots and shadows, and burnt terracotta orange (#C25A38) only for the low sun and a few small beacon lights. Bright and high key, never dark. Flat vector shapes with no outlines, long hard-edged diagonal shadows falling toward the lower left, heavy paper grain and a faint risograph misregistration texture. Calm, orderly, optimistic. No people, no text, no lettering, no numbers, no logos, no faces, no 3D render look. 4:3 landscape.
+
+### hero-bess.jpg
+
+**What it is:** BESS and energy infrastructure.
+**The idea:** A battery storage park: rows of containers that hold the grid together, quiet and enormous.
+
+Save as: `public/about/hero-bess.jpg`
+
+> A 4:3 editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print, seen from ground level. A battery energy storage park at the edge of a city. On the far left edge, a tall steel lattice transmission tower rises out of the top of the image, its insulators and cross-arms in deep green. On the far right edge, a tall substation structure of transformers, busbars and steel frames rises out of the top of the image. Across the bottom third, long parallel rows of identical battery containers recede toward the horizon, each with ventilation grilles and a small orange status light, with low inverter cabinets between the rows and a maintenance robot on wheels inspecting one container. Wind turbines stand small and calm on the distant horizon beside a low city skyline, with a half-set burnt terracotta sun near the right. Composed exactly like a stage set around an empty sky: the horizon line sits 58 percent of the way down the image. Everything above the horizon between the two edge structures is plain flat cream sky, completely empty: no clouds, no birds, no cables, no drones, no glow. That empty sky occupies the middle two thirds of the image width and the whole upper half, because text will be set there. Strictly four colors only: warm cream paper (#FFFEF2) for the sky and the largest surfaces, muted sage green (#7D9C90) for the ground, distant buildings and mid-tones, deep forest green (#1C4439) for the structures, machines, robots and shadows, and burnt terracotta orange (#C25A38) only for the low sun and a few small beacon lights. Bright and high key, never dark. Flat vector shapes with no outlines, long hard-edged diagonal shadows falling toward the lower left, heavy paper grain and a faint risograph misregistration texture. Calm, orderly, optimistic. No people, no text, no lettering, no numbers, no logos, no faces, no 3D render look. 4:3 landscape. Do not add power lines crossing the sky; the tower's cables leave the frame at the top left only.
+
+### hero-grid.jpg
+
+**What it is:** BESS and energy infrastructure, second view.
+**The idea:** Generation, storage and the grid in one frame: solar, batteries and a substation working together.
+
+Save as: `public/about/hero-grid.jpg`
+
+> A 4:3 editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print, seen from ground level. A solar and storage site where energy meets the grid. On the far left edge, a tall cooling and control building with stacked steel platforms and ladders rises out of the top of the image. On the far right edge, a tall steel substation frame with large transformers rises out of the top of the image. In the bottom third, tilted rows of solar panels fill the foreground in sharp geometric bands, with a cluster of battery containers and a small inspection drone resting on its pad in the middle distance. A low line of industrial buildings and a city skyline sit on the horizon, with a half-set burnt terracotta sun behind the substation. Composed exactly like a stage set around an empty sky: the horizon line sits 58 percent of the way down the image. Everything above the horizon between the two edge structures is plain flat cream sky, completely empty: no clouds, no birds, no cables, no drones, no glow. That empty sky occupies the middle two thirds of the image width and the whole upper half, because text will be set there. Strictly four colors only: warm cream paper (#FFFEF2) for the sky and the largest surfaces, muted sage green (#7D9C90) for the ground, distant buildings and mid-tones, deep forest green (#1C4439) for the structures, machines, robots and shadows, and burnt terracotta orange (#C25A38) only for the low sun and a few small beacon lights. Bright and high key, never dark. Flat vector shapes with no outlines, long hard-edged diagonal shadows falling toward the lower left, heavy paper grain and a faint risograph misregistration texture. Calm, orderly, optimistic. No people, no text, no lettering, no numbers, no logos, no faces, no 3D render look. 4:3 landscape. Keep the drone on the ground; nothing flies in the sky.
+
+### hero-agents.jpg
+
+**What it is:** AI liability, the digital line.
+**The idea:** AI agents at work in the financial district: the money they move, the commitments they make, made visible as quiet lines of light.
+
+Save as: `public/about/hero-agents.jpg`
+
+> A 4:3 editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print, seen from ground level. A calm financial district plaza at the edge of a city. On the far left edge, a tall modernist office tower rises out of the top of the image, its grid of windows showing small glowing screens on every floor. On the far right edge, an equally tall bank building with a colonnade rises out of the top of the image. In the bottom third, a wide paved plaza: a row of sleek terminals, a small wheeled courier robot carrying a sealed document case with an orange beacon, and a driverless car at the curb. A few thin straight lines of deep green light run low along the plaza floor between the two buildings, like circuit traces connecting the terminals, never rising into the sky. A city skyline on the horizon, with a half-set burnt terracotta sun near the right. Composed exactly like a stage set around an empty sky: the horizon line sits 58 percent of the way down the image. Everything above the horizon between the two edge structures is plain flat cream sky, completely empty: no clouds, no birds, no cables, no drones, no glow. That empty sky occupies the middle two thirds of the image width and the whole upper half, because text will be set there. Strictly four colors only: warm cream paper (#FFFEF2) for the sky and the largest surfaces, muted sage green (#7D9C90) for the ground, distant buildings and mid-tones, deep forest green (#1C4439) for the structures, machines, robots and shadows, and burnt terracotta orange (#C25A38) only for the low sun and a few small beacon lights. Bright and high key, never dark. Flat vector shapes with no outlines, long hard-edged diagonal shadows falling toward the lower left, heavy paper grain and a faint risograph misregistration texture. Calm, orderly, optimistic. No people, no text, no lettering, no numbers, no logos, no faces, no 3D render look. 4:3 landscape. The light traces stay on the ground plane only.
+
+### hero-datacenter.jpg
+
+**What it is:** AI liability, the infrastructure the agents run on.
+**The idea:** A data center campus: the physical home of the AI that businesses deploy.
+
+Save as: `public/about/hero-datacenter.jpg`
+
+> A 4:3 editorial illustration in flat mid-century modernist style, like a 1960s corporate annual report cover or a vintage screen print, seen from ground level. A data center campus at the edge of a city. On the far left edge, a tall multi-storey data hall rises out of the top of the image, its open side showing rows of server racks with tiny lights. On the far right edge, a tall block of rooftop cooling units and stacked chillers on a steel frame rises out of the top of the image. In the bottom third, a paved service yard: a backup generator, a row of fiber conduit markers, a small wheeled maintenance robot with an orange beacon, and a technician humanoid robot carrying a server blade toward the hall. Low campus buildings and a city skyline on the horizon, with a half-set burnt terracotta sun near the right. Composed exactly like a stage set around an empty sky: the horizon line sits 58 percent of the way down the image. Everything above the horizon between the two edge structures is plain flat cream sky, completely empty: no clouds, no birds, no cables, no drones, no glow. That empty sky occupies the middle two thirds of the image width and the whole upper half, because text will be set there. Strictly four colors only: warm cream paper (#FFFEF2) for the sky and the largest surfaces, muted sage green (#7D9C90) for the ground, distant buildings and mid-tones, deep forest green (#1C4439) for the structures, machines, robots and shadows, and burnt terracotta orange (#C25A38) only for the low sun and a few small beacon lights. Bright and high key, never dark. Flat vector shapes with no outlines, long hard-edged diagonal shadows falling toward the lower left, heavy paper grain and a faint risograph misregistration texture. Calm, orderly, optimistic. No people, no text, no lettering, no numbers, no logos, no faces, no 3D render look. 4:3 landscape.
+
+### If the set drifts
+
+Append the matching line from the next section, plus these two that matter for
+this set:
+
+- **The horizon came out high** → "The horizon line is exactly 58 percent of the way down the image. Everything above it between the two edge structures is empty cream sky."
+- **The edges came out short** → "The left and right structures are very tall and are cut off by the top edge of the image."
+
+---
+
 ## If a result drifts off-style
 
 Append the matching line and regenerate.
