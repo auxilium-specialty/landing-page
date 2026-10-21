@@ -1,12 +1,12 @@
 {
   "default": {
-    "title": "Auxilium Specialty | Insurance for Frontier Technology Risk",
-    "description": "Auxilium Specialty is a managing general agent insuring the risks of autonomy: AI liability for businesses that run AI agents, and robotics coverage for companies that deploy or make robots. Placed through brokers."
+    "title": "Auxilium Specialty | AI-Native Specialty Insurance",
+    "description": "Auxilium Specialty is an AI-native managing general agent insuring novel and underserved risks in growing industries, using state-of-the-art tools to underwrite, price and distribute coverage. Placed through brokers."
   },
   "routes": {
     "/": {
-      "title": "Auxilium Specialty | Insurance for Frontier Technology Risk",
-      "description": "Auxilium Specialty is a managing general agent insuring the risks of autonomy: AI liability for businesses that run AI agents, and robotics coverage for companies that deploy or make robots. Placed through brokers."
+      "title": "Auxilium Specialty | AI-Native Specialty Insurance",
+      "description": "Auxilium Specialty is an AI-native managing general agent insuring novel and underserved risks in growing industries, using state-of-the-art tools to underwrite, price and distribute coverage. Placed through brokers."
     },
     "/digital-risk/ai-liability": {
       "title": "AI Liability Insurance | Auxilium Specialty",
