@@ -14,6 +14,8 @@ import Privacy from "@/pages/legal/Privacy";
 import Terms from "@/pages/legal/Terms";
 import NotFound from "@/pages/NotFound";
 import Login from "@/pages/Login";
+import UnderConstruction from "@/pages/UnderConstruction";
+import holding from "@/content/holding.json";
 
 /** Every product URL that has ever been live, and where it lands now.
  * Mirrored by the `reclaim` entries in seo.json, which give the same moves a
@@ -49,6 +51,17 @@ const MOVED: Record<string, string> = {
 
 /** Application route table. All pages share the SiteLayout (header/footer/waitlist). */
 export function AppRoutes() {
+  // While the site is rebuilt every URL shows the holding page. Nothing behind it
+  // was removed: set `enabled` to false in content/holding.json to bring the
+  // full site back. The build reads the same switch (scripts/prerender-seo.mjs).
+  if (holding.enabled) {
+    return (
+      <Routes>
+        <Route path="*" element={<UnderConstruction />} />
+      </Routes>
+    );
+  }
+
   return (
     <Routes>
       <Route element={<SiteLayout />}>
