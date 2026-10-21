@@ -61,8 +61,8 @@ export default function UnderConstruction() {
         </span>
       </header>
 
-      <main ref={mainRef} className="relative flex min-h-0 flex-1 items-center py-6">
-        <div className="grid w-full gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-16 xl:grid-cols-[1.35fr_1fr]">
+      <main ref={mainRef} className="relative flex min-h-0 flex-1 items-center py-4 sm:py-6">
+        <div className="grid w-full gap-6 sm:gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-16 xl:grid-cols-[1.35fr_1fr]">
           <div
             ref={leftRef}
             className="relative z-10"
@@ -72,7 +72,7 @@ export default function UnderConstruction() {
               <GlassWordmark />
             </h1>
 
-            <div ref={anchorRef} className="relative mt-6 sm:mt-10">
+            <div ref={anchorRef} className="relative mt-5 sm:mt-10">
               <button
                 type="button"
                 onClick={() => setOpen((o) => !o)}
@@ -102,11 +102,11 @@ export default function UnderConstruction() {
               open && "max-lg:opacity-0",
             )}
           >
-            <div className="mb-4 flex items-center gap-3 sm:mb-6">
+            <div className="mb-3 flex items-center gap-3 sm:mb-6">
               <span className="font-mono text-[0.66rem] uppercase tracking-[0.24em] text-[#8c6a22]">Manifesto</span>
               <span className="h-px w-12 bg-[#b58d3c]/50" />
             </div>
-            <div className="max-w-[36rem] space-y-3 text-[clamp(0.8rem,1.75vh,1.15rem)] font-light leading-relaxed text-[#1a1712]/85 sm:space-y-4">
+            <div className="max-w-[36rem] space-y-3 text-[clamp(0.8rem,1.75vh,1.15rem)] font-light leading-normal sm:leading-relaxed text-[#1a1712]/85 sm:space-y-4">
               <ManifestoText asideClassName="text-[#8c6a22]" />
             </div>
           </section>
@@ -169,7 +169,7 @@ function ContactForm() {
       onSubmit={handleSubmit}
       className="mt-3 space-y-3.5 border border-[#1a1712]/10 bg-white p-5 text-left shadow-[0_18px_40px_-24px_rgb(26_23_18/0.35)] sm:px-6"
     >
-      <div className="grid gap-3.5 sm:grid-cols-2">
+      <div className="grid grid-cols-2 gap-3.5">
         <label className="block">
           <span className={label}>Name</span>
           <input name="name" required autoComplete="name" className="holding-field" />
