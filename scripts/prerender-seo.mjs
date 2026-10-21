@@ -24,7 +24,7 @@
  *
  * Run as `node scripts/prerender-seo.mjs` (wired into `npm run build`).
  */
-import { readFileSync, writeFileSync, mkdirSync, readdirSync, statSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, statSync, rmSync } from "node:fs";
 import { join, dirname, extname } from "node:path";
 import { createServer } from "node:http";
 
@@ -176,9 +176,16 @@ async function renderRoute(browser, origin, path) {
 const template = readFileSync(TEMPLATE, "utf8");
 const seo = JSON.parse(readFileSync("src/content/seo.json", "utf8"));
 
+/* While the holding page is on (src/content/holding.json, the same switch the
+   app reads), only the home page is published. Every other path then falls to
+   404.html, which hands it to the app, and the app shows the holding page. No
+   page, reclaim page or llms.txt describing the full site is left to read. */
+const HOLDING = JSON.parse(readFileSync("src/content/holding.json", "utf8")).enabled === true;
+
 /** Every route to prerender: path -> {title, description, type?}. */
 const targets = new Map(Object.entries(seo.routes));
-for (const post of readPosts()) {
+if (HOLDING) for (const path of [...targets.keys()]) if (path !== "/") targets.delete(path);
+for (const post of HOLDING ? [] : readPosts()) {
   targets.set(`/insights/${post.slug}`, {
     title: `${post.title} | Auxilium Specialty`,
     description: post.excerpt || seo.default.description,
@@ -227,7 +234,7 @@ for (const [path, meta] of targets) {
    serves the current description under the old address and points its canonical
    at the live page, so the cached copy is replaced instead of left to expire. */
 const reclaimed = [];
-for (const [oldPath, target] of Object.entries(seo.reclaim ?? {})) {
+for (const [oldPath, target] of HOLDING ? [] : Object.entries(seo.reclaim ?? {})) {
   const targetUrl = urlFor(target.to);
   const meta = seo.routes[target.to] ?? seo.default;
   const page = `<!doctype html>
@@ -277,13 +284,14 @@ const sitemap =
   locs.map((loc) => `  <url><loc>${esc(loc)}</loc><lastmod>${BUILD_DATE}</lastmod></url>`).join("\n") +
   `\n</urlset>\n`;
 writeFileSync(join(DOCS, "sitemap.xml"), sitemap);
+if (HOLDING) rmSync(join(DOCS, "llms.txt"), { force: true });
 
 if (server) server.close();
 if (browser) await browser.close();
 
 console.log(
   `[prerender] ${written.length} routes${browser ? " rendered" : " (metadata only)"}, ` +
-    `${reclaimed.length} reclaim pages, sitemap ${locs.length} urls`,
+    `${reclaimed.length} reclaim pages, sitemap ${locs.length} urls${HOLDING ? " (holding page only)" : ""}`,
 );
 if (thin.length) {
   console.warn(`[prerender] thin or failed routes: ${thin.join(", ")}`);
