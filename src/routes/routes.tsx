@@ -14,6 +14,11 @@ import Privacy from "@/pages/legal/Privacy";
 import Terms from "@/pages/legal/Terms";
 import NotFound from "@/pages/NotFound";
 import Login from "@/pages/Login";
+import UnderConstruction from "@/pages/UnderConstruction";
+
+/** While the site is rebuilt every URL shows the holding page. Nothing behind
+ * it was removed: set this to false to bring the full site back. */
+const UNDER_CONSTRUCTION = true;
 
 /** Every product URL that has ever been live, and where it lands now.
  * Mirrored by the `reclaim` entries in seo.json, which give the same moves a
@@ -49,6 +54,14 @@ const MOVED: Record<string, string> = {
 
 /** Application route table. All pages share the SiteLayout (header/footer/waitlist). */
 export function AppRoutes() {
+  if (UNDER_CONSTRUCTION) {
+    return (
+      <Routes>
+        <Route path="*" element={<UnderConstruction />} />
+      </Routes>
+    );
+  }
+
   return (
     <Routes>
       <Route element={<SiteLayout />}>
