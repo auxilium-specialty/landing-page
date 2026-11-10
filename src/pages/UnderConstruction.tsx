@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown, Loader2, Mail } from "lucide-react";
 import { toast } from "sonner";
+import { FlowBackground } from "@/components/holding/FlowBackground";
 import { GlassWordmark } from "@/components/holding/GlassWordmark";
 import { ManifestoText } from "@/components/about/ManifestoText";
 import { FORMSPREE_ENDPOINT } from "@/features/contact/PortalForm";
@@ -53,7 +54,7 @@ export default function UnderConstruction() {
 
   return (
     <div className="holding relative flex h-svh flex-col overflow-hidden px-5 py-5 font-manifesto sm:px-10 sm:py-6 lg:px-16">
-      <div aria-hidden="true" className="holding-flow pointer-events-none absolute" />
+      <FlowBackground />
 
       <header className="relative flex items-center justify-end whitespace-nowrap font-mono text-[0.68rem] uppercase tracking-[0.22em] text-ink sm:justify-between">
         <span className="hidden sm:inline">{site.name}</span>

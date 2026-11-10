@@ -8,7 +8,7 @@
  */
 export function GlassWordmark() {
   const word = (
-    <text x="600" y="196" textAnchor="middle" className="holding-glyphs" fontSize="262">
+    <text x="607" y="212" textAnchor="middle" className="holding-glyphs" fontSize="288" letterSpacing="-15">
       AUXILIUM
     </text>
   );

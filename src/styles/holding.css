@@ -4,8 +4,8 @@
   color: hsl(var(--ink));
 }
 
-/* The gradient, on a layer larger than the page so it can drift behind the
-   word and show through the glass. */
+/* The fallback behind FlowBackground's WebGL water: the gradient on a layer
+   larger than the page, drifting slowly. */
 .holding-flow {
   inset: -60%;
   background: linear-gradient(
@@ -45,32 +45,38 @@ html:has(.holding) body {
   font-weight: 900;
 }
 
-/* Light drifting inside the letters. */
+/* Light wandering inside the letters, each patch on its own looping path and
+   pace, so it pools and runs in every direction rather than sliding sideways. */
 .holding-blob {
   transform-box: view-box;
-  animation: holding-drift 22s ease-in-out infinite alternate;
+  animation: holding-wander-a 19s ease-in-out infinite;
 }
 .holding-blob-b {
-  animation-name: holding-drift-b;
-  animation-duration: 28s;
+  animation-name: holding-wander-b;
+  animation-duration: 23s;
 }
 .holding-blob-c {
-  animation-name: holding-drift-c;
-  animation-duration: 17s;
+  animation-name: holding-wander-c;
+  animation-duration: 29s;
 }
-@keyframes holding-drift {
-  0% { transform: translate(0, 0); }
-  50% { transform: translate(380px, -30px); }
-  100% { transform: translate(760px, 20px); }
+@keyframes holding-wander-a {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(240px, -60px); }
+  45% { transform: translate(520px, 50px); }
+  70% { transform: translate(300px, 80px); }
+  85% { transform: translate(120px, -40px); }
 }
-@keyframes holding-drift-b {
-  0% { transform: translate(0, 0); }
-  50% { transform: translate(-400px, -30px); }
-  100% { transform: translate(-780px, 10px); }
+@keyframes holding-wander-b {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-320px, 70px); }
+  50% { transform: translate(-640px, -50px); }
+  75% { transform: translate(-260px, -80px); }
 }
-@keyframes holding-drift-c {
-  0% { transform: translate(-420px, 30px); }
-  100% { transform: translate(420px, -10px); }
+@keyframes holding-wander-c {
+  0%, 100% { transform: translate(-380px, 40px); }
+  30% { transform: translate(-60px, -70px); }
+  60% { transform: translate(400px, 60px); }
+  80% { transform: translate(120px, 90px); }
 }
 
 /* A sheen across the glass, then a rest. */
