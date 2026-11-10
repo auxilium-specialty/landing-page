@@ -53,10 +53,12 @@ export default function UnderConstruction() {
 
   return (
     <div className="holding relative flex h-svh flex-col overflow-hidden px-5 py-5 font-manifesto sm:px-10 sm:py-6 lg:px-16">
-      <header className="relative flex items-center justify-end whitespace-nowrap font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[#1a1712]/70 sm:justify-between">
+      <div aria-hidden="true" className="holding-flow pointer-events-none absolute" />
+
+      <header className="relative flex items-center justify-end whitespace-nowrap font-mono text-[0.68rem] uppercase tracking-[0.22em] text-ink sm:justify-between">
         <span className="hidden sm:inline">{site.name}</span>
         <span className="flex items-center gap-2.5">
-          <span className="holding-dot h-1.5 w-1.5 bg-[#b58d3c]" />
+          <span className="holding-dot h-1.5 w-1.5 bg-ink" />
           Under construction
         </span>
       </header>
@@ -78,7 +80,7 @@ export default function UnderConstruction() {
                 onClick={() => setOpen((o) => !o)}
                 aria-expanded={open}
                 aria-controls="holding-contact"
-                className="inline-flex items-center gap-3 rounded-none border border-[#b58d3c]/60 bg-white px-6 py-3.5 font-mono text-[0.7rem] font-medium uppercase tracking-[0.2em] text-[#8c6a22] transition-colors hover:border-[#b58d3c] hover:bg-[#b58d3c]/[0.06]"
+                className="inline-flex items-center gap-3 rounded-none border border-ink/60 px-6 py-3.5 font-mono text-[0.7rem] font-medium uppercase tracking-[0.2em] text-ink transition-colors hover:border-ink hover:bg-ink/10"
               >
                 Get in touch
                 <ChevronDown className={cn("h-3.5 w-3.5 transition-transform duration-300", open && "rotate-180")} />
@@ -98,30 +100,30 @@ export default function UnderConstruction() {
           <section
             aria-label="Manifesto"
             className={cn(
-              "transition-opacity duration-300 lg:border-l lg:border-[#b58d3c]/25 lg:pl-12",
+              "transition-opacity duration-300 lg:border-l lg:border-ink/25 lg:pl-12",
               open && "max-lg:opacity-0",
             )}
           >
             <div className="mb-3 flex items-center gap-3 sm:mb-6">
-              <span className="font-mono text-[0.66rem] uppercase tracking-[0.24em] text-[#8c6a22]">Manifesto</span>
-              <span className="h-px w-12 bg-[#b58d3c]/50" />
+              <span className="font-mono text-[0.66rem] uppercase tracking-[0.24em] text-ink">Manifesto</span>
+              <span className="h-px w-12 bg-ink/50" />
             </div>
-            <div className="max-w-[36rem] space-y-3 text-[clamp(0.8rem,1.75vh,1.15rem)] font-light leading-normal sm:leading-relaxed text-[#1a1712]/85 sm:space-y-4">
-              <ManifestoText asideClassName="text-[#8c6a22]" />
+            <div className="max-w-[36rem] space-y-3 text-[clamp(0.8rem,1.75vh,1.15rem)] font-light leading-normal sm:leading-relaxed text-ink sm:space-y-4">
+              <ManifestoText asideClassName="text-ink" />
             </div>
           </section>
         </div>
       </main>
 
-      <footer className="relative flex flex-col justify-between gap-1 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-[#1a1712]/60 sm:flex-row">
+      <footer className="relative flex flex-col justify-between gap-1 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-ink sm:flex-row">
         <span>
           © {new Date().getFullYear()} {site.legalName}
         </span>
         <span className="flex gap-6">
-          <a href={`mailto:${site.email.contact}`} className="normal-case tracking-[0.08em] hover:text-[#8c6a22]">
+          <a href={`mailto:${site.email.contact}`} className="normal-case tracking-[0.08em] hover:opacity-70">
             {site.email.contact}
           </a>
-          <a href={site.social.linkedin} target="_blank" rel="noreferrer" className="hover:text-[#8c6a22]">
+          <a href={site.social.linkedin} target="_blank" rel="noreferrer" className="hover:opacity-70">
             LinkedIn
           </a>
         </span>
@@ -155,19 +157,19 @@ function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="mt-3 border border-[#b58d3c]/30 bg-white px-6 py-10 text-center shadow-[0_18px_40px_-24px_rgb(26_23_18/0.35)]">
-        <p className="font-manifesto text-2xl font-light text-[#8c6a22]">Thank you.</p>
-        <p className="mt-2 text-sm text-[#1a1712]/70">We will be in touch shortly.</p>
+      <div className="mt-3 border border-brand-mid/30 bg-card px-6 py-10 text-center shadow-[0_18px_40px_-24px_rgb(26_23_18/0.35)]">
+        <p className="font-manifesto text-2xl font-light text-brand-mid">Thank you.</p>
+        <p className="mt-2 text-sm text-foreground/70">We will be in touch shortly.</p>
       </div>
     );
   }
 
-  const label = "font-mono text-[0.62rem] uppercase tracking-[0.2em] text-[#1a1712]/50";
+  const label = "font-mono text-[0.62rem] uppercase tracking-[0.2em] text-foreground/60";
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-3 space-y-3.5 border border-[#1a1712]/10 bg-white p-5 text-left shadow-[0_18px_40px_-24px_rgb(26_23_18/0.35)] sm:px-6"
+      className="mt-3 space-y-3.5 border border-foreground/10 bg-card p-5 text-left shadow-[0_18px_40px_-24px_rgb(26_23_18/0.35)] sm:px-6"
     >
       <div className="grid grid-cols-2 gap-3.5">
         <label className="block">
@@ -185,7 +187,7 @@ function ContactForm() {
       </label>
       <label className="block">
         <span className={label}>
-          Message <span className="normal-case tracking-normal text-[#1a1712]/30">(optional)</span>
+          Message <span className="normal-case tracking-normal text-foreground/50">(optional)</span>
         </span>
         <textarea name="message" rows={2} className="holding-field resize-none" />
       </label>
@@ -193,7 +195,7 @@ function ContactForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex flex-1 items-center justify-center gap-2 bg-gradient-to-b from-[#e8c77a] to-[#c39a45] px-6 py-3.5 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[#1a1408] transition-opacity hover:opacity-90 disabled:opacity-60"
+          className="inline-flex flex-1 items-center justify-center gap-2 gradient-brand px-6 py-3.5 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ink transition-opacity hover:opacity-90 disabled:opacity-60"
         >
           {status === "submitting" ? (
             <>
@@ -207,7 +209,7 @@ function ContactForm() {
         </button>
         <a
           href={`mailto:${site.email.contact}`}
-          className="flex items-center gap-1.5 font-mono text-[0.68rem] text-[#1a1712]/60 transition-colors hover:text-[#8c6a22]"
+          className="flex items-center gap-1.5 font-mono text-[0.68rem] text-foreground/60 transition-colors hover:text-brand-mid"
         >
           <Mail className="h-3.5 w-3.5" /> {site.email.contact}
         </a>

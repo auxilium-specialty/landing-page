@@ -1,21 +1,35 @@
-/*
- * Holding page. The brand is moving to gold; these tokens are scoped to the
- * page until the rest of the site follows.
- */
+/* Holding page, on the brand's green gradient. */
 .holding {
-  --h-bg: #ffffff;
-  --h-ink: #1a1712;
-  --h-gold: #b58d3c;
-  --h-gold-light: #e8c77a;
-  --h-gold-deep: #8c6a22;
-  background: var(--h-bg);
-  color: var(--h-ink);
+  background: hsl(var(--brand-deep));
+  color: hsl(var(--ink));
 }
 
-/* No green showing when the page is pulled past its ends. */
+/* The gradient, on a layer larger than the page so it can drift behind the
+   word and show through the glass. */
+.holding-flow {
+  inset: -60%;
+  background: linear-gradient(
+    150deg,
+    hsl(var(--brand-deep)) 0%,
+    hsl(var(--brand-mid)) 20%,
+    hsl(var(--brand-light)) 36%,
+    hsl(var(--brand-mid)) 52%,
+    hsl(var(--brand-deep)) 68%,
+    hsl(var(--brand-mid)) 84%,
+    hsl(var(--brand-deep)) 100%
+  );
+  will-change: transform;
+  animation: holding-flow 26s ease-in-out infinite alternate;
+}
+@keyframes holding-flow {
+  0% { transform: translate(-14%, -10%); }
+  100% { transform: translate(14%, 10%); }
+}
+
+/* The page color carries on when the page is pulled past its ends. */
 html:has(.holding),
 html:has(.holding) body {
-  background: #ffffff;
+  background: hsl(var(--brand-deep));
 }
 
 /* Lovelo Black, the solid cut of Lovelo, served from public/fonts. */
@@ -31,7 +45,7 @@ html:has(.holding) body {
   font-weight: 900;
 }
 
-/* Gold drifting inside the letters. */
+/* Light drifting inside the letters. */
 .holding-blob {
   transform-box: view-box;
   animation: holding-drift 22s ease-in-out infinite alternate;
@@ -72,8 +86,8 @@ html:has(.holding) body {
   animation: holding-pulse 2.4s ease-in-out infinite;
 }
 @keyframes holding-pulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgb(181 141 60 / 0.5); }
-  50% { opacity: 0.6; box-shadow: 0 0 0 6px rgb(181 141 60 / 0); }
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 hsl(var(--ink) / 0.5); }
+  50% { opacity: 0.6; box-shadow: 0 0 0 6px hsl(var(--ink) / 0); }
 }
 
 /* The form drops open by unclipping from the top. It never takes or gives up
@@ -94,22 +108,23 @@ html:has(.holding) body {
 .holding-field {
   width: 100%;
   border: 0;
-  border-bottom: 1px solid rgb(26 23 18 / 0.18);
+  border-bottom: 1px solid hsl(var(--foreground) / 0.18);
   background: transparent;
   padding: 0.3rem 0;
-  color: var(--h-ink);
+  color: hsl(var(--foreground));
   font-size: 0.975rem;
   outline: none;
   transition: border-color 200ms ease;
 }
 .holding-field::placeholder {
-  color: rgb(26 23 18 / 0.3);
+  color: hsl(var(--foreground) / 0.3);
 }
 .holding-field:focus {
-  border-bottom-color: var(--h-gold);
+  border-bottom-color: hsl(var(--brand-mid));
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .holding-flow,
   .holding-blob,
   .holding-sheen,
   .holding-dot {
