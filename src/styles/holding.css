@@ -79,15 +79,6 @@ html:has(.holding) body {
   80% { transform: translate(120px, 90px); }
 }
 
-/* A sheen across the glass, then a rest. */
-.holding-sheen {
-  animation: holding-sheen 9s ease-in-out infinite;
-}
-@keyframes holding-sheen {
-  0% { transform: translateX(0); }
-  40%, 100% { transform: translateX(1900px); }
-}
-
 .holding-dot {
   animation: holding-pulse 2.4s ease-in-out infinite;
 }
@@ -132,7 +123,6 @@ html:has(.holding) body {
 @media (prefers-reduced-motion: reduce) {
   .holding-flow,
   .holding-blob,
-  .holding-sheen,
   .holding-dot {
     animation: none;
   }
