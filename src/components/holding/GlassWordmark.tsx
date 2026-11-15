@@ -3,8 +3,7 @@
  *
  * The body of the letters is translucent, so the gradient behind them shows
  * through, with paler light drifting inside the glyphs as if refracted. On top
- * sit a frosted gradient, a sheen that sweeps across now and then, a bright
- * inner bevel, and a lit rim.
+ * sit a frosted gradient, a bright inner bevel, and a lit rim.
  */
 export function GlassWordmark() {
   const word = (
@@ -40,11 +39,6 @@ export function GlassWordmark() {
           <stop offset="50%" stopColor="#cfe6dc" stopOpacity="0.7" />
           <stop offset="100%" stopColor="#fffef2" stopOpacity="0.9" />
         </linearGradient>
-        <linearGradient id="hg-sheen" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity="0" />
-          <stop offset="50%" stopColor="#ffffff" stopOpacity="0.85" />
-          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-        </linearGradient>
         <filter id="hg-shadow" x="-5%" y="-20%" width="110%" height="160%">
           <feGaussianBlur stdDeviation="9" />
         </filter>
@@ -63,7 +57,6 @@ export function GlassWordmark() {
         <ellipse className="holding-blob holding-blob-b" cx="1000" cy="120" rx="320" ry="160" fill="url(#hg-blob)" />
         <ellipse className="holding-blob holding-blob-c" cx="600" cy="90" rx="240" ry="130" fill="url(#hg-blob-soft)" />
         <rect width="1200" height="220" fill="url(#hg-body)" />
-        <rect className="holding-sheen" x="-400" y="0" width="300" height="220" fill="url(#hg-sheen)" />
         <g fill="none" stroke="#fff" strokeOpacity="0.3" strokeWidth="8">
           {word}
         </g>
